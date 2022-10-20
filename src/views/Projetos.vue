@@ -6,7 +6,7 @@
         <label for="nomeDoProjeto" class="label">
           Nome do Projeto
         </label>
-        <input type="text" class="input" v-model="nomeDoProjeto" id="nomeDoProjeto">
+        <input @keydown="teste" type="text" class="input" v-model="nomeDoProjeto" id="nomeDoProjeto">
       </div>
       <div class="field">
         <button class="button" type="submit">
@@ -32,25 +32,31 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import IProjeto from '../interfaces/IProjeto'
+import { computed, defineComponent } from 'vue'
+import { useStore } from '@/store'
 
 export default defineComponent({
   name: 'Projetos',
   data () {
     return {
-      nomeDoProjeto: '',
-      projetos: [] as IProjeto[]
+      nomeDoProjeto: ''
     }
   },
   method: {
+    teste() {
+      console.log("uai")
+    },
     salvar() {
-      const projeto: IProjeto = {
-        id: new Date().toISOString(),
-        nome: this.nomeDoProjeto
-      }
-      this.projetos.push(projeto)
+      console.log("teste", this.nomeDoProjeto);
+      this.store.commit('ADICIONA_PROJETO', this.nomeDoProjeto)
       this.nomeDoProjeto = ''
+    }
+  },
+  setup () {
+    const store = useStore()
+    return {
+      store,
+      projetos: computed(() => store.state.projetos)
     }
   }
 })
