@@ -3,15 +3,16 @@
     <h1 class="title">Projetos</h1>
     <form @submit.prevent="salvar">
       <div class="field">
-        <label for="nomeDoProjeto" class="label">
-          Nome do Projeto
-        </label>
-        <input @keydown="teste" type="text" class="input" v-model="nomeDoProjeto" id="nomeDoProjeto">
+        <label for="nomeDoProjeto" class="label"> Nome do Projeto </label>
+        <input
+          type="text"
+          class="input"
+          v-model="nomeDoProjeto"
+          id="nomeDoProjet"
+        />
       </div>
       <div class="field">
-        <button class="button" type="submit">
-          Salvar
-        </button>
+        <button class="button" type="submit">Salvar</button>
       </div>
     </form>
     <table class="table is-fullwidth">
@@ -32,22 +33,18 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
 import { useStore } from '@/store'
+import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Projetos',
-  data () {
+  name: "Projetos",
+  data() {
     return {
-      nomeDoProjeto: ''
+      nomeDoProjeto: ""
     }
   },
-  method: {
-    teste() {
-      console.log("uai")
-    },
+  methods: {
     salvar() {
-      console.log("teste", this.nomeDoProjeto);
       this.store.commit('ADICIONA_PROJETO', this.nomeDoProjeto)
       this.nomeDoProjeto = ''
     }
@@ -62,7 +59,7 @@ export default defineComponent({
 })
 </script>
 
-<style>
+<style scoped>
 .projetos {
   padding: 1.25rem;
 }

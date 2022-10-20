@@ -1,14 +1,10 @@
 <template>
-  <div class="box formulario">
+  <div class="box">
     <div class="columns">
-      <div
-        class="column is-5"
-        role="form"
-        aria-label="Formulário para criação de uma nova tarefa"
-      >
+      <div class="column is-5" role="form" aria-label="Formulário para iniciar uma nova tarefa">
         <input
-          type="text"
           class="input"
+          type="text"
           placeholder="Qual tarefa você deseja iniciar?"
           v-model="descricao"
         />
@@ -18,47 +14,46 @@
           <select v-model="idProjeto">
             <option value="">Selecione o projeto</option>
             <option
+              :value="projeto.id"
               v-for="projeto in projetos"
               :key="projeto.id"
-              :value="projeto.id"
             >
               {{ projeto.nome }}
             </option>
           </select>
-
         </div>
       </div>
       <div class="column">
-        <Temporizador @aoTemporizadorFinalizado="finalizarTarefa"/>
+        <Temporizador @aoFinalizarTarefa="salvarTarefa"/>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent } from 'vue'
 import Temporizador from './Temporizador.vue'
 import { useStore } from 'vuex'
 import { key } from '@/store'
 
 export default defineComponent({
-  name: "Formulário",
+  name: "Formulario",
   emits: ['aoSalvarTarefa'],
   components: {
-    Temporizador
+    Temporizador,
   },
-  data () {
+  data () { 
     return {
       descricao: '',
       idProjeto: ''
     }
   },
   methods: {
-    finalizarTarefa (tempoDecorrido: number) : void {
+    salvarTarefa (tempoEmSegundos: number) : void {    
       this.$emit('aoSalvarTarefa', {
-        duracaoEmSegundos: tempoDecorrido,
+        duracaoEmSegundos: tempoEmSegundos,
         descricao: this.descricao,
-        projeto: this.projetos.find(proj => proj.id === this.idProjeto)
+        projeto: this.projetos.find(proj => proj.id == this.idProjeto)
       })
       this.descricao = ''
     }
@@ -69,11 +64,15 @@ export default defineComponent({
       projetos: computed(() => store.state.projetos)
     }
   }
-});
+})
 </script>
-<style>
-.formulario {
-  color: var(--texto-primario);
+
+<style scoped>
+.button {
+  margin-left: 8px;
+}
+.box {
   background-color: var(--bg-primario);
+  color: var(--texto-primario);
 }
 </style>
