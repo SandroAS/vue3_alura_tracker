@@ -4,7 +4,8 @@
       <span class="icon is-small">
         <i class="fas fa-plus"></i>
       </span>
-    </router-link>
+      <span>Novo projeto</span>
+    </router-link> 
     <table class="table is-fullwidth">
       <thead>
         <tr>
@@ -38,13 +39,12 @@
 <script lang="ts">
 import { useStore } from '@/store'
 import { computed, defineComponent } from 'vue'
-import { EXCLUIR_PROJETOS } from '@/store/tipo-mutacoes'
-
+import { EXCLUIR_PROJETO } from '@/store/tipo-mutacoes'
 export default defineComponent({
-  name: 'Projetos',
+  name: 'Lista',
   methods: {
-    excluir(id: string) {
-      this.store.commit(EXCLUIR_PROJETOS, id)
+    excluir (id: string) {
+      this.store.commit(EXCLUIR_PROJETO, id)
     }
   },
   setup () {
