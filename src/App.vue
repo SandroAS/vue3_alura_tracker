@@ -11,11 +11,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import BarraLateral from "./components/BarraLateral.vue";
-import Notificacoes from "./components/Notificacoes.vue"
+import { defineComponent } from 'vue'
+import BarraLateral from './components/BarraLateral.vue'
+import Notificacoes from './components/Notificacoes.vue'
+
 export default defineComponent({
-  name: "App",
+  name: 'App',
   components: {
     BarraLateral,
     Notificacoes
@@ -30,7 +31,7 @@ export default defineComponent({
       this.modoEscuro = modoEscuro
     }
   }
-});
+})
 </script>
 
 <style>

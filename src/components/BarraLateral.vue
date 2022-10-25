@@ -14,6 +14,7 @@
             tarefas
           </router-link>
         </li>
+        <hr class="my-2" style="height: 0.5px;">
         <li>
           <router-link to="/projetos" class="link">
             <i class="fas fa-project-diagram"></i>
@@ -26,9 +27,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
+
 export default defineComponent({
-  name: "BarraLateral",
+  name: 'BarraLateral',
   emits: ['aoAlterarModo'],
   data () {
     return {
@@ -46,8 +48,9 @@ export default defineComponent({
       return this.modoEscuro ? 'claro' : 'escuro'
     }
   }
-});
+})
 </script>
+
 <style scoped>
 h1 {
   text-align: center;
@@ -66,16 +69,21 @@ header {
     height: auto;
   }
 }
+.panel {
+  padding: 4px 12px;
+  background-color: teal;
+  text-align: justify;
+}
 .panel li {
   margin: 8px 0;
 }
 .link {
   color: #fff;
 }
-.link:hover {
-  color: #FAF0CA;
+link:hover {
+  color: #0d3b66;
 }
-.link.router-link-active {
+link.router-link-active {
   color: #FAF0CA;
 }
 </style>

@@ -15,10 +15,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import Cronometro from "./Cronometro.vue";
-import Box from "./Box.vue";
-import ITarefa from "../interfaces/ITarefa";
+import { defineComponent, PropType } from 'vue'
+import Cronometro from './Cronometro.vue'
+import Box from './Box.vue'
+import ITarefa from '../interfaces/ITarefa'
 
 export default defineComponent({
   name: 'Tarefa',
@@ -39,5 +39,5 @@ export default defineComponent({
         .substr(11, 8)
     }
   }
-});
+})
 </script>

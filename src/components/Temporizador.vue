@@ -17,13 +17,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import Cronometro from "./Cronometro.vue";
+import { defineComponent } from 'vue'
+import Cronometro from './Cronometro.vue'
+
 export default defineComponent({
-  name: "Temporizador",
+  name: 'Temporizador',
   emits: ['aoFinalizarTarefa'],
   components: {
-    Cronometro,
+    Cronometro
   },
   data () {
     return {
@@ -46,8 +47,9 @@ export default defineComponent({
       clearInterval(this.cronometro)
     }
   }
-});
+})
 </script>
+
 <style scoped>
 .button {
   margin-left: 8px;
