@@ -31,11 +31,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
-import Temporizador from './Temporizador.vue'
+import { computed, defineComponent } from "vue";
+import Temporizador from "./Temporizador.vue";
 import { useStore } from 'vuex'
 import { key } from '@/store'
-
 export default defineComponent({
   name: "Formulario",
   emits: ['aoSalvarTarefa'],
@@ -45,7 +44,7 @@ export default defineComponent({
   data () { 
     return {
       descricao: '',
-      idProjeto: ''
+      idProjeto: ''      
     }
   },
   methods: {
@@ -64,9 +63,8 @@ export default defineComponent({
       projetos: computed(() => store.state.projetos)
     }
   }
-})
+});
 </script>
-
 <style scoped>
 .button {
   margin-left: 8px;
