@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { useStore } from '@/store'
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { ALTERA_PROJETO } from '@/store/tipo-mutacoes'
 import { TipoNotificacao } from '@/interfaces/INotificacao'
 import useNotificador from '@/hooks/notificador'
@@ -32,17 +32,17 @@ export default defineComponent({
       type: String
     }
   },
-  mounted () {
-    if(this.id) {
-      const projeto = this.store.state.projetos.find(proj => proj.id == this.id)
-      this.nomeDoProjeto = projeto?.nome || ''
-    }
-  },
-  data() {
-    return {
-      nomeDoProjeto: ''
-    }
-  },
+  // mounted () {
+  //   if(this.id) {
+  //     const projeto = this.store.state.projeto.projetos.find(proj => proj.id == this.id)
+  //     this.nomeDoProjeto = projeto?.nome || ''
+  //   }
+  // },
+  // data() {
+  //   return {
+  //     nomeDoProjeto: ''
+  //   }
+  // },
   methods: {
     salvar() {
       if (this.id) {
@@ -64,12 +64,21 @@ export default defineComponent({
       this.$router.push('/projetos')
     }
   },
-  setup () {
+  setup(props) {
     const store = useStore()
     const { notificar } = useNotificador()
+
+    const nomeDoProjeto = ref("")
+
+    if(props.id) {
+      const projeto = store.state.projeto.projetos.find(proj => proj.id === props.id)
+      nomeDoProjeto.value = projeto?.nome || ''
+    }
+
     return {
       store,
-      notificar
+      notificar,
+      nomeDoProjeto
     }
   }
 })
